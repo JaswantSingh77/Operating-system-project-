@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Generate random number between 1 to 50
+number=$((RANDOM % 50 + 1))
+
+attempts=3
+
+echo "🎮 Guess the Number Game"
+echo "You have 3 attempts to guess a number between 1 and 50"
+
+while [ $attempts -gt 0 ]
+do
+    echo "Enter your guess:"
+    read guess
+
+    if [ "$guess" -eq "$number" ]; then
+        echo "🎉 Correct! You guessed the number!"
+        exit 0
+    elif [ "$guess" -gt "$number" ]; then
+        echo "📉 Too High!"
+    else
+        echo "📈 Too Low!"
+    fi
+
+    attempts=$((attempts - 1))
+    echo "Attempts left: $attempts"
+done
+
+echo "❌ Game Over! The correct number was: $number"
